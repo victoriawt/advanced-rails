@@ -48,14 +48,14 @@ describe MoviesController do
   end
   describe 'update' do
     before :each do
-      Movie.create!(:id => 1, :title => 'Foo')
-      post :update, :id => 1, :movie => {:title => 'Bar'}
+      @movie = Movie.create!(:title => 'Foo')
+      post :update, :id => @movie.id, :movie => {:title => 'Bar'}
     end
     it 'should update the movie' do
-      Movie.find_by_id(1).title.should == 'Bar'
+      Movie.find_by_id(@movie.id).title.should == 'Bar'
     end
     it 'should redirect to the movie details' do
-      response.should redirect_to movie_path(1)
+      response.should redirect_to movie_path(@movie.id)
     end
     it 'should say the movie was successfully updated' do
       flash[:notice].should =~ /was successfully updated/
