@@ -15,13 +15,14 @@ describe MoviesController do
   end
   describe 'index' do
     before :each do
+      @fake_movie = FactoryGirl.create(:movie)
       get :index
     end
     it 'should select the index template for rendering' do
       response.should render_template('index')
     end
     it 'should make all the movies available to that template' do
-      assigns(:movies).should == [] # There are no movies
+      assigns(:movies).should == [@fake_movie] 
     end
     describe 'restful routing' do
       before :each do
