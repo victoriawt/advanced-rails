@@ -34,6 +34,33 @@ describe MoviesController do
       flash[:notice].should =~ /was successfully created/
     end
   end
+  describe 'edit' do
+    before :each do
+      @movie = Movie.create!(:title => 'Foo')
+      get :edit, :id => 1
+    end
+    it 'should provide the appropriate movie' do
+      assigns(:movie).should == @movie
+    end
+    it 'should render the edit template' do
+      response.should render_template 'edit'
+    end
+  end
+  describe 'update' do
+    before :each do
+      Movie.create!(:id => 1, :title => 'Foo')
+      post :update, :id => 1, :movie => {:title => 'Bar'}
+    end
+    it 'should update the movie' do
+      Movie.find_by_id(1).title.should == 'Bar'
+    end
+    it 'should redirect to the movie details' do
+      response.should redirect_to movie_path(1)
+    end
+    it 'should say the movie was successfully updated' do
+      flash[:notice].should =~ /was successfully updated/
+    end
+  end
   describe 'index' do
     before :each do
       @fake_movie = FactoryGirl.create(:movie)
