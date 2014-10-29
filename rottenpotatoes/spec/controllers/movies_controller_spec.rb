@@ -13,6 +13,27 @@ describe MoviesController do
       assigns(:movie).should == @fake_movie
     end
   end
+  describe 'new' do
+    it 'should render the new template' do
+      get :new
+      response.should render_template 'new'
+    end
+  end
+  describe 'create' do
+    before :each do
+      post :create, :movie => {:title => 'Foo'}
+    end
+    it 'should create a new movie' do
+      Movie.find_by_title('Foo').should_not == nil
+    end
+    it 'should redirect to the index' do
+      response.should redirect_to movies_path
+    end
+    it 'should say the movie was successfully created' do
+      flash[:notice].should =~ /Foo/
+      flash[:notice].should =~ /was successfully created/
+    end
+  end
   describe 'index' do
     before :each do
       @fake_movie = FactoryGirl.create(:movie)
