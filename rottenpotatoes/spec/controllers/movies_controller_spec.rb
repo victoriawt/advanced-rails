@@ -61,6 +61,21 @@ describe MoviesController do
       flash[:notice].should =~ /was successfully updated/
     end
   end
+  describe 'destroy' do
+    before :each do
+      @movie = Movie.create!(:title => 'Foo')
+      delete :destroy, :id => @movie.id
+    end
+    it 'should not exist' do
+      Movie.find_by_id(@movie.id).should == nil
+    end
+    it 'should redirect to the index' do
+      response.should redirect_to movies_path
+    end
+    it 'should say the movie was deleted' do
+      flash[:notice].should =~ /Movie 'Foo' deleted/
+    end
+  end
   describe 'index' do
     before :each do
       @fake_movie = FactoryGirl.create(:movie)
