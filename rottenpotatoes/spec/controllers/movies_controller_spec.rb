@@ -38,7 +38,7 @@ describe MoviesController do
   describe 'edit' do
     before :each do
       @movie = FactoryGirl.create(:movie, :title => 'Foo')
-      get :edit, :id => 1
+      get :edit, :id => @movie.id
     end
     it 'should provide the appropriate movie' do
       assigns(:movie).should == @movie
