@@ -30,3 +30,9 @@ Scenario: Update a movie (happy path)
   Then I should be on the details page for "This is Not a Test Movie"
 
 Scenario: Delete a movie (happy path)
+  Given I am on the details page for "Test Movie"
+  When I press "Delete"
+  #Need javascript support to finish testing this scenario!
+  And I confirm the popup
+  When I should be on the RottenPotatoes home page
+  And I should not see "Test Movie"
