@@ -36,7 +36,7 @@ describe MoviesController do
   end
   describe 'edit' do
     before :each do
-      @movie = Movie.create!(:title => 'Foo')
+      @movie = FactoryGirl.create(:movie, :title => 'Foo')
       get :edit, :id => 1
     end
     it 'should provide the appropriate movie' do
@@ -48,7 +48,7 @@ describe MoviesController do
   end
   describe 'update' do
     before :each do
-      @movie = Movie.create!(:title => 'Foo')
+      @movie = FactoryGirl.create(:movie, :title => 'Foo')
       post :update, :id => @movie.id, :movie => {:title => 'Bar'}
     end
     it 'should update the movie' do
@@ -63,7 +63,7 @@ describe MoviesController do
   end
   describe 'destroy' do
     before :each do
-      @movie = Movie.create!(:title => 'Foo')
+      @movie = FactoryGirl.create(:movie)
       delete :destroy, :id => @movie.id
     end
     it 'should not exist' do
@@ -73,7 +73,7 @@ describe MoviesController do
       response.should redirect_to movies_path
     end
     it 'should say the movie was deleted' do
-      flash[:notice].should =~ /Movie 'Foo' deleted/
+      flash[:notice].should =~ /Movie '.*' deleted/
     end
   end
   describe 'index' do
