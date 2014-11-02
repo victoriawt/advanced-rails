@@ -21,7 +21,8 @@ describe MoviesController do
   end
   describe 'create' do
     before :each do
-      post :create, :movie => {:title => 'Foo'}
+      @movie = FactoryGirl.create(:movie, :title => 'Foo')
+      post :create, :movie => @movie.attributes
     end
     it 'should create a new movie' do
       Movie.find_by_title('Foo').should_not == nil
