@@ -1,0 +1,16 @@
+describe "Movie" do
+  describe "model validations" do
+    it "should reject an empty title" do
+      m = Movie.new(:title => '', :rating => 'G', :release_date => '1980-01-01')
+      m.should_not be_valid
+      m.errors[:title].should == ["can't be blank"]
+    end
+    it "should reject an invalid rating"
+    it "should reject an empty rating"
+    it "should grandfather a movie older than 1968 with no rating"
+    it "should reject an empty date"
+    it "should reject a date older than 1930"
+  end
+
+
+end

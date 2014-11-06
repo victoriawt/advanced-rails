@@ -36,3 +36,13 @@ Scenario: Delete a movie (happy path)
   And I confirm the popup
   When I should be on the RottenPotatoes home page
   And I should not see "Test Movie"
+
+Scenario: Create a movie with no title (sad path)
+  When I follow "Add new movie"
+  #And I do not fill in "Title"
+  And I press "Save Changes"
+  Then I should see "Create New Movie"
+  And I should see "Errors prevented this movie from being created" 
+  And I should see "Title can't be blank"
+
+
