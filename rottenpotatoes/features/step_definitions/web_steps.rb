@@ -266,3 +266,5 @@ When /^(?:|I )dismiss (?:|the )popup$/ do
 #page.driver.browser.switch_to.alert.dismiss
   pending
 end
+
+
