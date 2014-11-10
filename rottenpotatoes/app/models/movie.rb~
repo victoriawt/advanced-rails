@@ -17,5 +17,5 @@ class Movie < ActiveRecord::Base
     release_date && release_date < @@grandfathered_date
   end
 end
-end
+
 
