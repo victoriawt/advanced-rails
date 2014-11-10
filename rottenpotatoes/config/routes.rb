@@ -12,8 +12,10 @@ Rottenpotatoes::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :movies
 
+resources :movies do
+  resources :reviews
+end
   resources :sessions, :only => [:new, :create, :destroy]
   root :to => redirect('/movies')
 

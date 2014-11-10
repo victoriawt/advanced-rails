@@ -21,6 +21,7 @@ class Movie < ActiveRecord::Base
 #  AND inside the Moviegoer class (idiomatically, it should go right
 #  after 'class Movie' or 'class Moviegoer'):
   has_many :reviews
+  validates_associated :reviews
 
 end
 

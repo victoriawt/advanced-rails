@@ -16,6 +16,12 @@ class Movie < ActiveRecord::Base
   def grandfathered?
     release_date && release_date < @@grandfathered_date
   end
+
+# place a copy of the following line anywhere inside the Movie class
+#  AND inside the Moviegoer class (idiomatically, it should go right
+#  after 'class Movie' or 'class Moviegoer'):
+  has_many :reviews
+
 end
 
 
