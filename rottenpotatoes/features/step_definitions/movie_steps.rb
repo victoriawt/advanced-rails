@@ -10,6 +10,17 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
+Given /the following moviegoers exist/ do |user_table|
+  DatabaseCleaner.clean
+  user_table.hashes.each do |user|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    Moviegoer.create! user
+  end
+end
+
+
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
