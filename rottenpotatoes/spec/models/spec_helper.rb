@@ -11,6 +11,11 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+def login(name)
+  @current_user = Moviegoer.create!(:name => name)
+  cookies[:stub_user_id] = @current_user.id
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
